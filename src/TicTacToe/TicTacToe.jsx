@@ -66,9 +66,16 @@ const TicTacToe = () => {
             winnerTitle.current.innerHTML = `Congratulations <span> X </span> !`;
         }
         else{
-            winnerTitle.current.innerHTML = `Congratulations <span> 0 </span> !`;
+            winnerTitle.current.innerHTML = `Congratulations <span> O </span> !`;
         }
     }
+    const reset = ()=>{
+        data = ["","","","","","","","",""]
+        setCount(0)
+        setLock(false)
+        winnerTitle.current.innerHTML = `Tic Tac Toe in <span>React</span>`;
+        document.querySelectorAll('.boxes').forEach(box => box.innerHTML = '')
+    };
 
 
 
@@ -95,7 +102,7 @@ const TicTacToe = () => {
           </div>
 
       </div>
-      <button className="reset" > Reset </button>
+      <button className="reset" onClick={reset}> Reset </button>
     </div>
   ) 
 }
