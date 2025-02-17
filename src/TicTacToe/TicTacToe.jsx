@@ -3,6 +3,7 @@ import { useState } from 'react'
 import circle_icon from '../assets/circle.png'
 import cross_icon from '../assets/cross.png'
 import './TicTacToe.css'
+import { useRef } from 'react'
 
 
 // Initial state of the game grid with empty cells
@@ -12,6 +13,8 @@ const TicTacToe = () => {
       
     let [count, setCount] = useState(0)
     let [lock, setLock] = useState(false)
+    let winnerTitle = useRef(null);
+
 
     const toggle = (e,num)=>{
         if(lock || data[num]!== ""){
@@ -26,13 +29,54 @@ const TicTacToe = () => {
             e.target.innerHTML = `<img src=${circle_icon} alt="circle" />`
             setCount(++count)
         }
+        checkWinner();
     }
+
+    const checkWinner = ()=>{
+      
+        // Winning combinations
+        let winningCombinations = [
+            [0,1,2],
+            [3,4,5],
+            [6,7,8],
+            [0,3,6],
+            [1,4,7],
+            [2,5,8],
+            [0,4,8],
+            [2,4,6]
+        ];
+
+        for(let i=0;i<winningCombinations.length;i++){
+            let [a,b,c] = winningCombinations[i]
+            if(data[a]!== "" && data[a]===data[b] && data[b]===data[c]){  
+                won(data[a])
+            }
+        }
+        // If all cells are filled and no one wins
+        if(count===9){
+            winnerTitle.current.innerHTML = `It's a draw!`;
+            setLock(true)
+        } 
+        return false      
+    }
+
+    const won = (winner) => {
+        setLock(true)
+        if(winner == 'X'){
+            winnerTitle.current.innerHTML = `Congratulations <span> X </span> !`;
+        }
+        else{
+            winnerTitle.current.innerHTML = `Congratulations <span> 0 </span> !`;
+        }
+    }
+
+
 
 
 
   return (
     <div className="container">
-        <h1 className="title"> Tic Tac Toe in <span>React</span> </h1>
+        <h1 className="title" ref={winnerTitle}> Tic Tac Toe in <span>React</span> </h1>
       <div className="board">
           <div className="row1">
                 <div className="boxes" onClick={(e)=> {toggle(e,0)}} > </div>
@@ -51,7 +95,7 @@ const TicTacToe = () => {
           </div>
 
       </div>
-      <button className="reset"> Reset </button>
+      <button className="reset" > Reset </button>
     </div>
   ) 
 }
