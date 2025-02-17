@@ -1,0 +1,20 @@
+.container {
+    text-align: center;
+}
+
+.title {
+    margin-top: 25px;
+    color: white;
+    font-size: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title span {
+    color: #26ffcb;
+    padding: 15px;
+}
+.reset {
+    
+}
