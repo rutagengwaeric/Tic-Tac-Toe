@@ -50,6 +50,7 @@ const TicTacToe = () => {
             let [a,b,c] = winningCombinations[i]
             if(data[a]!== "" && data[a]===data[b] && data[b]===data[c]){  
                 won(data[a])
+                return true
             }
         }
         // If all cells are filled and no one wins
@@ -73,7 +74,7 @@ const TicTacToe = () => {
         data = ["","","","","","","","",""]
         setCount(0)
         setLock(false)
-        winnerTitle.current.innerHTML = `Tic Tac Toe in <span>React</span>`;
+        winnerTitle.current.innerHTML = `Tic Tac Toe Game in <span>React</span>`;
         document.querySelectorAll('.boxes').forEach(box => box.innerHTML = '')
     };
 
@@ -83,7 +84,7 @@ const TicTacToe = () => {
 
   return (
     <div className="container">
-        <h1 className="title" ref={winnerTitle}> Tic Tac Toe in <span>React</span> </h1>
+        <h1 className="title" ref={winnerTitle}> Tic Tac Toe Game in <span>React</span> </h1>
       <div className="board">
           <div className="row1">
                 <div className="boxes" onClick={(e)=> {toggle(e,0)}} > </div>
@@ -102,7 +103,7 @@ const TicTacToe = () => {
           </div>
 
       </div>
-      <button className="reset" onClick={reset}> Reset </button>
+      <button className="reset" onClick={()=>{reset()}}> Reset </button>
     </div>
   ) 
 }
