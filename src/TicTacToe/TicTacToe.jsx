@@ -55,7 +55,7 @@ const TicTacToe = () => {
         }
         // If all cells are filled and no one wins
         if(count===9){
-            winnerTitle.current.innerHTML = `It's a draw!`;
+            winnerTitle.current.innerHTML = "It's a draw!";
             setLock(true)
         } 
         return false      
@@ -64,17 +64,17 @@ const TicTacToe = () => {
     const won = (winner) => {
         setLock(true)
         if(winner == 'X'){
-            winnerTitle.current.innerHTML = `Congratulations <span> X </span> !`;
+            winnerTitle.current.innerHTML = "Congratulations <span> X </span> !";
         }
         else{
-            winnerTitle.current.innerHTML = `Congratulations <span> O </span> !`;
+            winnerTitle.current.innerHTML = "Congratulations <span> O </span> !";
         }
     }
     const reset = ()=>{
         data = ["","","","","","","","",""]
         setCount(0)
         setLock(false)
-        winnerTitle.current.innerHTML = `Tic Tac Toe Game in <span>React</span>`;
+        winnerTitle.current.innerHTML = "Tic Tac Toe Game in <span>React</span>";
         document.querySelectorAll('.boxes').forEach(box => box.innerHTML = '')
     };
 
